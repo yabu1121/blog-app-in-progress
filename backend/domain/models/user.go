@@ -4,8 +4,18 @@ import "github.com/yabu1121/blog-backend/domain/models/helpers"
 
 
 type User struct {
+	ID uint `gorm:"primaryKey"`
+	Name string `gorm:"size:255;not null"`
+	Email string `gorm:"uniqueIndex;not null"`
+	helpers.Timestamps
+}
+
+type GetUserResponse struct {
 	ID uint `json:"id"`
 	Name string `json:"name"`
-	Email string `json:"email"`
-	helpers.Timestamps
+}
+
+type CreateUserRequest struct {
+	Name string `json:"name" validate:"required,min=2"`
+	Email string `json:"email" validate:"required,email"`
 }

@@ -30,15 +30,16 @@ const page = async () => {
   // })
 
   //並列
+  const id = Math.floor(Math.random() * 100000) + 1;
   const [res, resUser] = await Promise.all([
-    fetch(`${process.env.BACKEND_URL}`, {
+    fetch(`${process.env.BACKEND_URL}/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
       cache: 'no-store'
     }),
-    fetch(`${process.env.BACKEND_URL}/user`, {
+    fetch(`${process.env.BACKEND_URL}/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -1,4 +1,17 @@
-@baseUrl=http://10.255.255.254/:8080
+@baseUrl=http://localhost:8080
 
 ###
 GET {{baseUrl}}
+
+###
+
+GET {{baseUrl}}/user/9786
+
+### 
+POST {{baseUrl}}/user
+Content-Type: application/json
+
+{
+  "Name" : "name",
+  "Email": "sfafasfamapafle@gmail.com"
+}

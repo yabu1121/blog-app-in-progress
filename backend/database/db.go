@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/yabu1121/blog-backend/domain/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -42,4 +43,12 @@ func InitDB() {
 	sqlDB, _ := DB.DB()
 	sqlDB.SetMaxIdleConns(10)
 	sqlDB.SetMaxOpenConns(100)
+	
+	if err := DB.AutoMigrate(
+		&models.User{},
+	); err != nil {
+		log.Fatal("Migration Failed", err)
+	}
+	log.Println("Migration Successful")
+
 }

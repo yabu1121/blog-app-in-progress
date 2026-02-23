@@ -105,3 +105,26 @@
   data_sent......................: 22 MB  697 kB/s
 
 *DB接続あり
+█ TOTAL RESULTS 
+
+  checks_total.......: 92204   3071.834304/s
+  checks_succeeded...: 100.00% 92204 out of 92204
+  checks_failed......: 0.00%   0 out of 92204
+
+  ✓ status is 200
+
+  HTTP
+  http_req_duration..............: avg=317.13ms min=-8064695ns med=29.67ms max=3.93s p(90)=1.4s p(95)=1.79s
+    { expected_response:true }...: avg=317.13ms min=-8064695ns med=29.67ms max=3.93s p(90)=1.4s p(95)=1.79s
+  http_req_failed................: 0.00%  0 out of 92204
+  http_reqs......................: 92204  3071.834304/s
+
+  EXECUTION
+  iteration_duration.............: avg=322.6ms  min=390.56µs   med=33.72ms max=3.95s p(90)=1.4s p(95)=1.79s
+  iterations.....................: 92204  3071.834304/s
+  vus............................: 1000   min=1000       max=1000
+  vus_max........................: 1000   min=1000       max=1000
+
+  NETWORK
+  data_received..................: 13 MB  433 kB/s
+  data_sent......................: 6.5 MB 215 kB/s
