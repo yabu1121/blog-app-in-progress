@@ -41,11 +41,12 @@ func InitDB() {
 	log.Println("DB接続に成功しました。")
 
 	sqlDB, _ := DB.DB()
-	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxIdleConns(100)
 	sqlDB.SetMaxOpenConns(100)
 	
 	if err := DB.AutoMigrate(
 		&models.User{},
+		&models.Post{},
 	); err != nil {
 		log.Fatal("Migration Failed", err)
 	}
