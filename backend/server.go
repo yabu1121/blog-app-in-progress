@@ -4,12 +4,15 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/yabu1121/blog-backend/router"
+	"github.com/yabu1121/blog-backend/database"
 )
 
 func main(){
 
 	e := echo.New()
 	e.Use(middleware.RequestLogger())
+
+	database.InitDB()
 
 	e.GET("/", router.Hello);
 	e.GET("/user", router.GetUser);
