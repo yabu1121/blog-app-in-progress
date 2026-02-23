@@ -26,7 +26,7 @@ const page = async () => {
   //   headers: {
   //     'Content-Type': 'application/json',
   //   },
-  //   cache: 'reload'
+  //   cache: 'no-store'
   // })
 
   //並列
