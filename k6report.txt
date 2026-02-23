@@ -1,0 +1,107 @@
+* DB接続なし空のapi
+
+- time.Sleep(time.Millisecond * 2000)
+█ TOTAL RESULTS 
+
+  checks_total.......: 150     4.750425/s
+  checks_succeeded...: 100.00% 150 out of 150
+  checks_failed......: 0.00%   0 out of 150
+
+  ✓ status is 200
+
+  HTTP
+  http_req_duration..............: avg=2s   min=2s   med=2s   max=2.02s p(90)=2s   p(95)=2s   
+    { expected_response:true }...: avg=2s   min=2s   med=2s   max=2.02s p(90)=2s   p(95)=2s   
+  http_req_failed................: 0.00% 0 out of 150
+  http_reqs......................: 150   4.750425/s
+
+  EXECUTION
+  iteration_duration.............: avg=2.1s min=2.1s med=2.1s max=2.12s p(90)=2.1s p(95)=2.12s
+  iterations.....................: 150   4.750425/s
+  vus............................: 10    min=10       max=10
+  vus_max........................: 10    min=10       max=10
+
+  NETWORK
+  data_received..................: 21 kB 670 B/s
+  data_sent......................: 11 kB 333 B/s
+
+- time.Sleepなし
+█ TOTAL RESULTS 
+
+  checks_total.......: 2930    97.564789/s
+  checks_succeeded...: 100.00% 2930 out of 2930
+  checks_failed......: 0.00%   0 out of 2930
+
+  ✓ status is 200
+
+  HTTP
+  http_req_duration..............: avg=1.47ms   min=176.14µs med=1.36ms   max=13.38ms  p(90)=2.31ms   p(95)=2.57ms  
+    { expected_response:true }...: avg=1.47ms   min=176.14µs med=1.36ms   max=13.38ms  p(90)=2.31ms   p(95)=2.57ms  
+  http_req_failed................: 0.00%  0 out of 2930
+  http_reqs......................: 2930   97.564789/s
+
+  EXECUTION
+  iteration_duration.............: avg=102.45ms min=100.32ms med=102.37ms max=119.68ms p(90)=103.53ms p(95)=103.91ms
+  iterations.....................: 2930   97.564789/s
+  vus............................: 10     min=10        max=10
+  vus_max........................: 10     min=10        max=10
+
+  NETWORK
+  data_received..................: 413 kB 14 kB/s
+  data_sent......................: 205 kB 6.8 kB/s
+
+
+- user 1000 sleepなし高負荷状態
+
+█ TOTAL RESULTS 
+
+  checks_total.......: 308336  10246.65755/s
+  checks_succeeded...: 100.00% 308336 out of 308336
+  checks_failed......: 0.00%   0 out of 308336
+
+  ✓ status is 200
+
+  HTTP
+  http_req_duration..............: avg=96.71ms min=42.42µs med=96.49ms max=635.81ms p(90)=144.44ms p(95)=179.98ms
+    { expected_response:true }...: avg=96.71ms min=42.42µs med=96.49ms max=635.81ms p(90)=144.44ms p(95)=179.98ms
+  http_req_failed................: 0.00%  0 out of 308336
+  http_reqs......................: 308336 10246.65755/s
+
+  EXECUTION
+  iteration_duration.............: avg=97.14ms min=95.99µs med=96.83ms max=636.3ms  p(90)=145.12ms p(95)=180.31ms
+  iterations.....................: 308336 10246.65755/s
+  vus............................: 1000   min=1000        max=1000
+  vus_max........................: 1000   min=1000        max=1000
+
+  NETWORK
+  data_received..................: 44 MB  1.4 MB/s
+  data_sent......................: 22 MB  717 kB/s
+
+
+- user 10000
+
+█ TOTAL RESULTS 
+
+  checks_total.......: 309491  9956.180318/s
+  checks_succeeded...: 100.00% 309491 out of 309491
+  checks_failed......: 0.00%   0 out of 309491
+
+  ✓ status is 200
+
+  HTTP
+  http_req_duration..............: avg=963.42ms min=48.93µs  med=1.02s max=4.76s p(90)=1.47s p(95)=1.56s
+    { expected_response:true }...: avg=963.42ms min=48.93µs  med=1.02s max=4.76s p(90)=1.47s p(95)=1.56s
+  http_req_failed................: 0.00%  0 out of 309491
+  http_reqs......................: 309491 9956.180318/s
+
+  EXECUTION
+  iteration_duration.............: avg=972.1ms  min=110.12µs med=1.02s max=4.76s p(90)=1.48s p(95)=1.56s
+  iterations.....................: 309491 9956.180318/s
+  vus............................: 7320   min=4517        max=10000
+  vus_max........................: 10000  min=10000       max=10000
+
+  NETWORK
+  data_received..................: 44 MB  1.4 MB/s
+  data_sent......................: 22 MB  697 kB/s
+
+*DB接続あり

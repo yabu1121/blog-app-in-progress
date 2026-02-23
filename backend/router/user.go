@@ -2,7 +2,6 @@ package router
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/labstack/echo/v4"
 )
@@ -16,7 +15,6 @@ type UserResponse struct {
 }
 
 func GetUser (c echo.Context) error {
-	time.Sleep(2000 * time.Millisecond)
 	user := UserResponse{
 		ID: 1,
 		Name: "yabu",
