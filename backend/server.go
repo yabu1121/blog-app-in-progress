@@ -22,6 +22,7 @@ func main() {
 	userHandler := &handler.UserHandler{DB: database.DB}
 	postHandler := &handler.PostHandler{DB: database.DB}
 
+	e.GET("/", handler.Hello)
 	e.GET("/user", userHandler.GetAllUser)
 	e.GET("/user/:id", userHandler.GetUserById)
 	e.POST("/user", userHandler.CreateUser)

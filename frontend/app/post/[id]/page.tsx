@@ -1,13 +1,9 @@
+import { Post } from "@/types/post";
 import Link from "next/link";
 
 type Props = {
   params: Promise<{ id: string }>; 
 };
-
-type Post = {
-  title: string;
-  content: string;
-}
 
 const page = async ({ params }: Props) => {
   const { id } = await params;

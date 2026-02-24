@@ -1,0 +1,27 @@
+import { GetUserResponse, User } from "./user";
+
+export type Post = {
+  id:number;
+  title: string;
+  content: string;
+  userId: number;
+  user: User;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string;
+}
+
+export type CreatePostRequest = {
+  title: string;
+  content: string;
+  user_id: number;
+}
+
+export type GetPostResponse = {
+  id: number;
+  title: string;
+  content: string;
+  user: GetUserResponse;
+  created_at: string;
+  updated_at: string;
+}

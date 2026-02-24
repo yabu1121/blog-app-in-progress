@@ -9,6 +9,7 @@ export default function PostForm() {
     const req = {
       title: formData.get('title'),
       content: formData.get('content'),
+      user_id: Number(formData.get('userId'))
     };
 
     await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/post`, {
@@ -26,6 +27,7 @@ export default function PostForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-2 mt-4">
       <input name="title" type="text" className="border p-1" placeholder="title"/>
       <input name="content" type="text" className="border p-1" placeholder="content"/>
+      <input name="userId" type="number" className="border p-1" placeholder="userId"/>
       <button type="submit" className="bg-blue-500 text-white p-1">投稿</button>
     </form>
   );

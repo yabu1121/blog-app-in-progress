@@ -20,6 +20,7 @@ func (h *PostHandler) CreatePost (c echo.Context) error {
 	post := models.Post{
 		Title: req.Title,
 		Content: req.Content,
+		UserID: req.UserID,
 	}
 	if err := h.DB.Create(&post).Error;err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error":"internal server error"})
@@ -29,7 +30,7 @@ func (h *PostHandler) CreatePost (c echo.Context) error {
 
 func (h *PostHandler) GetAllPost (c echo.Context) error {
 	var posts []models.Post
-	if err := h.DB.Find(&posts).Error; err != nil {
+	if err := h.DB.Preload("User").Find(&posts).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error":"internal server error"})
 	}
 	res := make([]models.GetPostResponse, len(posts))
@@ -38,6 +39,10 @@ func (h *PostHandler) GetAllPost (c echo.Context) error {
 			ID: p.ID,
 			Title: p.Title,
 			Content: p.Content,
+			User: models.GetUserResponse{
+				ID:p.User.ID,
+				Name: p.User.Name,
+			},
 			CreatedAt: p.CreatedAt,
 			UpdatedAt: p.UpdatedAt,
 		}
@@ -51,7 +56,7 @@ func (h *PostHandler) GetPostById (c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error":"id is required"})
 	}
 	var post models.Post
-	if err := h.DB.Debug().First(&post, id).Error;err != nil {
+	if err := h.DB.Preload("User").First(&post, id).Error;err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
 	}
 
@@ -59,6 +64,10 @@ func (h *PostHandler) GetPostById (c echo.Context) error {
 		ID: post.ID,
 		Title: post.Title,
 		Content: post.Content,
+		User: models.GetUserResponse{
+			ID: post.User.ID,
+			Name: post.User.Name,
+		},
 		CreatedAt: post.CreatedAt,
 		UpdatedAt: post.UpdatedAt,
 	}

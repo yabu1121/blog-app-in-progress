@@ -1,39 +1,22 @@
 import PostForm from "@/components/PostForm";
-import Link from "next/link";
-
-type postResponse = {
-  id: number;
-  title: string;
-  content: string;
-  created_at: string;
-  updated_at: string;
-}
+import { PostRow } from "@/components/PostRow";
+import { GetPostResponse } from "@/types/post";
 
 const page = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/post`,{
     method: 'GET',
     cache: 'no-store'
   })
-  const data: postResponse[] = await res.json();
+  if (!res.ok) return <p>fail</p>
+  const posts: GetPostResponse[] = await res.json();
 
   return (
     <>
-      <h1>posts</h1>
+      <h1 className="text-3xl font-bold py-4">posts</h1>
 
-      <ul className="w-screen">
-        <div className="mx-auto">
-          {data.map((item) => {
-              return (
-                <li key={item.id}>
-                  <Link href={`/post/${item.id}`} className="bg-blue-400 text-white w-20 rounded">
-                    {item.id}
-                  </Link>
-                  :{item.title}:{item.content}
-                </li>
-              )
-          })}
-        </div>
-      </ul>
+      <div className="space-y-2">
+        {posts.map((post) => <PostRow key={post.id} post={post}/>)}
+      </div>
 
       <PostForm />
     </>

@@ -5,7 +5,7 @@ GET {{baseUrl}}
 
 ###
 
-GET {{baseUrl}}/user/34
+GET {{baseUrl}}/user/1
 
 ### 
 POST {{baseUrl}}/user
@@ -30,5 +30,6 @@ Content-Type: application/json
 
 {
   "title": "title",
-  "content": "content"
+  "content": "content",
+  "user_id": 1
 }
