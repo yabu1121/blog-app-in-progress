@@ -11,6 +11,7 @@ type Post struct {
 	ID uint `gorm:"primaryKey" json:"id"`
 	Title string  `gorm:"size:255;not null" json:"title"`
 	Content string `gorm:"type:text;not null" json:"content"`
+	UserID    uint      `gorm:"not null"`
 	helpers.Timestamps
 }
 
