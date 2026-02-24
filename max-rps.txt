@@ -49,3 +49,29 @@
     NETWORK
     data_received..................: 81 MB  2.7 MB/s
     data_sent......................: 42 MB  1.4 MB/s
+
+
+non-docker*
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1859461 61987.324466/s
+    checks_succeeded...: 100.00% 1859461 out of 1859461
+    checks_failed......: 0.00%   0 out of 1859461
+
+    ✓ status is 200
+
+    HTTP
+    http_req_duration..............: avg=1.5ms  min=-3342189ns med=944.18µs max=38.5ms  p(90)=3.73ms p(95)=4.62ms
+      { expected_response:true }...: avg=1.5ms  min=-3342189ns med=944.18µs max=38.5ms  p(90)=3.73ms p(95)=4.62ms
+    http_req_failed................: 0.00%   0 out of 1859461
+    http_reqs......................: 1859461 61987.324466/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.59ms min=58.04µs    med=1.03ms   max=42.35ms p(90)=3.84ms p(95)=4.76ms
+    iterations.....................: 1859461 61987.324466/s
+    vus............................: 100     min=100          max=100
+    vus_max........................: 100     min=100          max=100
+
+    NETWORK
+    data_received..................: 238 MB  7.9 MB/s
+    data_sent......................: 130 MB  4.3 MB/s
