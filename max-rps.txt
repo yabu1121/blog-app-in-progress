@@ -1,0 +1,51 @@
+█ TOTAL RESULTS 
+
+    checks_total.......: 876460 29222.954415/s
+    checks_succeeded...: 94.33% 826829 out of 876460
+    checks_failed......: 5.66%  49631 out of 876460
+
+    ✗ status is 200
+      ↳  94% — ✓ 826829 / ✗ 49631
+
+    HTTP
+    http_req_duration..............: avg=2.38ms min=0s      med=1.96ms max=111.53ms p(90)=4.77ms p(95)=5.98ms
+      { expected_response:true }...: avg=2.5ms  min=75.53µs med=2.05ms max=111.53ms p(90)=4.86ms p(95)=6.06ms
+    http_req_failed................: 5.66%  49631 out of 876460
+    http_reqs......................: 876460 29222.954415/s
+
+    EXECUTION
+    iteration_duration.............: avg=3.4ms  min=54.02µs med=2.15ms max=198.14ms p(90)=5.67ms p(95)=7.92ms
+    iterations.....................: 876460 29222.954415/s
+    vus............................: 100    min=100             max=100
+    vus_max........................: 100    min=100             max=100
+
+    NETWORK
+    data_received..................: 117 MB 3.9 MB/s
+    data_sent......................: 58 MB  1.9 MB/s
+
+
+*db 
+
+ █ TOTAL RESULTS 
+
+    checks_total.......: 557786  18595.143261/s
+    checks_succeeded...: 100.00% 557786 out of 557786
+    checks_failed......: 0.00%   0 out of 557786
+
+    ✓ status is 200
+
+    HTTP
+    http_req_duration..............: avg=5.25ms min=16.36µs  med=4.25ms max=199.9ms  p(90)=10.11ms p(95)=12.55ms
+      { expected_response:true }...: avg=5.25ms min=16.36µs  med=4.25ms max=199.9ms  p(90)=10.11ms p(95)=12.55ms
+    http_req_failed................: 0.00%  0 out of 557786
+    http_reqs......................: 557786 18595.143261/s
+
+    EXECUTION
+    iteration_duration.............: avg=5.36ms min=328.44µs med=4.35ms max=200.56ms p(90)=10.25ms p(95)=12.68ms
+    iterations.....................: 557786 18595.143261/s
+    vus............................: 100    min=100         max=100
+    vus_max........................: 100    min=100         max=100
+
+    NETWORK
+    data_received..................: 81 MB  2.7 MB/s
+    data_sent......................: 42 MB  1.4 MB/s

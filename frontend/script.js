@@ -2,12 +2,14 @@ import http from 'k6/http';
 import { check } from 'k6';
 
 export const options = {
-  vus: 100, // 同時接続する仮想ユーザー数(Virtual Users)
-  duration: '15s', // 30秒間リクエストを投げ続ける
+  // 同時接続する仮想ユーザー数(Virtual Users)
+  vus: 100, 
+  // 30秒間リクエストを投げ続ける
+  duration: '30s',
 };
 
 export default function () {
-  const res = http.get(`http://localhost:8080`); // あなたのGo API
+  const res = http.get(`http://localhost:8080/user/1`); 
   check(res, {
     'status is 200': (r) => r.status === 200,
   });

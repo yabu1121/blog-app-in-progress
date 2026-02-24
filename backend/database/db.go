@@ -26,7 +26,9 @@ func InitDB() {
 
 	var err error
 	for i := 0; i < 10; i++ {
-		DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+		DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
+			PrepareStmt: true, // プリペアドステートメントをキャッシュして高速化
+		})
 		if err == nil {
 			break
 		}
@@ -41,9 +43,9 @@ func InitDB() {
 	log.Println("DB接続に成功しました。")
 
 	sqlDB, _ := DB.DB()
-	sqlDB.SetMaxIdleConns(100)
-	sqlDB.SetMaxOpenConns(100)
-	
+	sqlDB.SetMaxIdleConns(1000) // アイドル接続数を最大と同等にして接続コストをゼロにする
+	sqlDB.SetMaxOpenConns(1000)
+	sqlDB.SetConnMaxLifetime(time.Hour)
 	if err := DB.AutoMigrate(
 		&models.User{},
 		&models.Post{},
