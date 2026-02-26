@@ -33,3 +33,6 @@ Content-Type: application/json
   "content": "content",
   "user_id": 1
 }
+
+###
+DELETE {{baseUrl}}/post/39

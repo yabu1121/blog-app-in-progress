@@ -1,12 +1,16 @@
 import { GetPostResponse } from "@/types/post"
 import { formatDate } from "@/util/formatDate"
 import Link from "next/link"
+import DeleteButton from "./DeleteButton"
 
 export const PostRow = ({post}: {post:GetPostResponse}) => {
   return (
     <Link href={`/post/${post.id}`} className="block rounded boerder border-2 border-black px-4 py-2">
       <div>
-        <p>id:{post.id}</p>
+        <div className="flex justify-between">
+          <p>id:{post.id}</p>
+          <DeleteButton id={post.id}/>
+        </div>
         <p className="text-2xl font-bold text-blue-400">{post.title}</p>
         <p className="text-sm font-semibold">{post.content}</p>
       </div>
