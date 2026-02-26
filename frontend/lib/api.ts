@@ -1,3 +1,4 @@
+import { CreatePostRequest } from "@/types/post";
 import { mapToPost } from "@/util/map";
 
 export const getPosts = async () => {
@@ -12,5 +13,17 @@ export const deletePosts = async ( id:number ) => {
     method: 'DELETE',
   })
   if(!res.ok) throw new Error("削除失敗");
-  return res.ok
+  return res.json();
+}
+
+export const createPost = async ( newPost : CreatePostRequest) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/post`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newPost)
+  });
+  if (!res.ok)throw new Error("投稿失敗");
+  return res.json()
 }
