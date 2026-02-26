@@ -73,3 +73,14 @@ func (h *PostHandler) GetPostById (c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, res)
 }
+
+func (h * PostHandler) DeletePost (c echo.Context) error {
+	id := c.Param("id")
+	if id == "" {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "id is required"})
+	}
+	if err := h.DB.Where("id = ?", id).Delete(&models.Post{}).Error; err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
+	}
+	return c.NoContent(http.StatusNoContent)
+}
