@@ -1,5 +1,5 @@
 import { GetPostResponse } from "@/types/post"
-import { fonrmatDate, formatDate } from "@/util/formatDate"
+import { formatDate } from "@/util/formatDate"
 import Link from "next/link"
 
 export const PostRow = ({post}: {post:GetPostResponse}) => {
@@ -12,8 +12,8 @@ export const PostRow = ({post}: {post:GetPostResponse}) => {
       </div>
 
       <div className="mr-0">
-        <p>作成:{formatDate(post.created_at)}</p>
-        <p>更新:{formatDate(post.updated_at)}</p>
+        <p>作成:{formatDate(post.createdAt)}</p>
+        <p>更新:{formatDate(post.updatedAt)}</p>
       </div>
     </Link>
   )

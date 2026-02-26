@@ -22,6 +22,6 @@ export type GetPostResponse = {
   title: string;
   content: string;
   user: GetUserResponse;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }

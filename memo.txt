@@ -1,0 +1,67 @@
+.
+├── 100-3report.txt
+├── README.md
+├── api
+│   └── test.http
+├── backend
+│   ├── Dockerfile
+│   ├── config
+│   │   └── config.go
+│   ├── database
+│   │   ├── db.go
+│   │   └── seed.go
+│   ├── docker-compose.yml
+│   ├── domain
+│   │   └── models
+│   │       ├── helpers
+│   │       │   └── timestamps.go
+│   │       ├── post.go
+│   │       └── user.go
+│   ├── go.mod
+│   ├── go.sum
+│   ├── handler
+│   │   ├── hello.go
+│   │   ├── post.go
+│   │   └── user.go
+│   ├── server.go
+│   └── tmp
+├── frontend
+│   ├── README.md
+│   ├── app
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── loading.tsx
+│   │   ├── page.tsx
+│   │   └── post
+│   │       ├── [id]
+│   │       │   └── page.tsx
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── PostForm.tsx
+│   │   └── PostRow.tsx
+│   ├── eslint.config.mjs
+│   ├── lib
+│   ├── next-env.d.ts
+│   ├── next.config.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.mjs
+│   ├── public
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   ├── script.js
+│   ├── tsconfig.json
+│   ├── types
+│   │   ├── post.ts
+│   │   └── user.ts
+│   └── util
+│       └── formatDate.ts
+├── k6report.txt
+├── max-rps.txt
+└── memo.txt
+
+18 directories, 46 files
