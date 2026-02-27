@@ -36,3 +36,13 @@ Content-Type: application/json
 
 ###
 DELETE {{baseUrl}}/post/39
+
+###
+PUT {{baseUrl}}/post/61
+Content-Type: application/json
+
+{
+  "title": "fa",
+  "content":"contentfaesijf",
+  "user_id": 1
+}

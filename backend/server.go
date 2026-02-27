@@ -28,6 +28,7 @@ func main() {
 	e.POST("/user", userHandler.CreateUser)
 	e.GET("/post", postHandler.GetAllPost)
 	e.GET("/post/:id", postHandler.GetPostById)
+	e.PUT("/post/:id", postHandler.UpdatePost)
 	e.DELETE("/post/:id", postHandler.DeletePost)
 	e.POST("/post", postHandler.CreatePost)
 

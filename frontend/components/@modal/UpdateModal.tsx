@@ -10,7 +10,7 @@ export const UpdateModal = () => {
   const queryClient = useQueryClient();
   const { modalId, closeModal } = useUpdateModalStore();
 
-  const { mutate, isPending, isError } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: ({ targetId, targetPost} : { 
       targetId :number, 
       targetPost: CreatePostRequest
