@@ -5,6 +5,7 @@
 │   └── test.http
 ├── backend
 │   ├── Dockerfile
+│   ├── blog-backend
 │   ├── config
 │   │   └── config.go
 │   ├── database
@@ -13,6 +14,7 @@
 │   ├── docker-compose.yml
 │   ├── domain
 │   │   └── models
+│   │       ├── comment.go
 │   │       ├── helpers
 │   │       │   └── timestamps.go
 │   │       ├── post.go
@@ -20,6 +22,7 @@
 │   ├── go.mod
 │   ├── go.sum
 │   ├── handler
+│   │   ├── comment.go
 │   │   ├── hello.go
 │   │   ├── post.go
 │   │   └── user.go
@@ -27,21 +30,35 @@
 │   └── tmp
 ├── frontend
 │   ├── README.md
+│   ├── actions
+│   │   ├── commentApi.ts
+│   │   └── postApi.ts
 │   ├── app
 │   │   ├── favicon.ico
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   ├── loading.tsx
 │   │   ├── page.tsx
-│   │   └── post
-│   │       ├── [id]
-│   │       │   └── page.tsx
-│   │       └── page.tsx
+│   │   ├── post
+│   │   │   ├── [id]
+│   │   │   │   └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── post
+│   │   │       └── page.tsx
+│   │   └── providers.tsx
 │   ├── components
+│   │   ├── CommentList.tsx
+│   │   ├── CommentPostButton.tsx
+│   │   ├── PostDeleteButton.tsx
 │   │   ├── PostForm.tsx
-│   │   └── PostRow.tsx
+│   │   ├── PostList.tsx
+│   │   ├── PostRow.tsx
+│   │   ├── PostUpdateButton.tsx
+│   │   └── modal
+│   │       ├── CommentPostModal.tsx
+│   │       ├── DeleteModal.tsx
+│   │       └── UpdateModal.tsx
 │   ├── eslint.config.mjs
-│   ├── lib
 │   ├── next-env.d.ts
 │   ├── next.config.ts
 │   ├── package-lock.json
@@ -54,14 +71,19 @@
 │   │   ├── vercel.svg
 │   │   └── window.svg
 │   ├── script.js
+│   ├── store
+│   │   ├── useModalstore.ts
+│   │   └── usePostEditStore.ts
 │   ├── tsconfig.json
 │   ├── types
+│   │   ├── comment.ts
 │   │   ├── post.ts
 │   │   └── user.ts
 │   └── util
-│       └── formatDate.ts
+│       ├── formatDate.ts
+│       └── map.ts
 ├── k6report.txt
 ├── max-rps.txt
 └── memo.txt
 
-18 directories, 46 files
+21 directories, 65 files

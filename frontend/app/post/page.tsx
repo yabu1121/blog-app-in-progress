@@ -1,5 +1,5 @@
-import { DeleteModal } from "@/components/@modal/DeleteModal";
-import { UpdateModal } from "@/components/@modal/UpdateModal";
+import { DeleteModal } from "@/components/modal/DeleteModal";
+import { UpdateModal } from "@/components/modal/UpdateModal";
 import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
 

@@ -1,11 +1,11 @@
-import { CommentCreateModal } from "@/components/@modal/CommentPostModal";
+import { CommentCreateModal } from "@/components/modal/CommentPostModal";
 import { CommentList } from "@/components/CommentList";
 import { CommentPostButton } from "@/components/CommentPostButton";
 import { Post } from "@/types/post";
 import Link from "next/link";
 
 type Props = {
-  params: Promise<{ id: string }>; 
+  params: Promise<{ id: string }>;
 };
 
 const page = async ({ params }: Props) => {
@@ -23,11 +23,11 @@ const page = async ({ params }: Props) => {
       <div className="my-4">
         <div className="flex justify-between">
           <h2 className="font-bold text-xl">コメント一覧</h2>
-          <CommentPostButton id={Number(id)}/>
+          <CommentPostButton id={Number(id)} />
         </div>
-        <hr className="mb-4"/>
+        <hr className="mb-4" />
         <div className="max-w-4xl mx-auto space-y-4">
-          <CommentList postId={Number(id)}/>
+          <CommentList postId={Number(id)} />
         </div>
       </div>
 
