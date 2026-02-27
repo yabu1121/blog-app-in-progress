@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`max-w-6xl mx-auto ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="p-20 mx-auto">
           <TanstackProvider>

@@ -70,7 +70,7 @@ export const UpdateModal = () => {
           <form onSubmit={handleSubmit} id="edit-form" className="flex flex-col gap-2 mt-4">
             <input defaultValue={post?.title} name="title" type="text" className="border p-1" placeholder="title"/>
             <input defaultValue={post?.content} name="content" type="text" className="border p-1" placeholder="content"/>
-            <input defaultValue={post?.userId} name="userId" type="number" className="border p-1" placeholder="user_id"/>
+            <input name="userId" type="number" className="border p-1" placeholder="user_id"/>
           </form>
         </div>
         <div className='flex gap-3'>

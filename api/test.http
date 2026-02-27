@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
   "Name" : "name",
-  "Email": "sfafasfafqmapafle@gmail.com"
+  "Email": "sfawdfafewsfafqmapafle@gmail.com"
 }
 
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
 {
   "title": "title",
   "content": "content",
-  "user_id": 1
+  "user_id": 1,
 }
 
 ###
