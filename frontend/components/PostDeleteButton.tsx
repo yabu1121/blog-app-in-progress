@@ -2,7 +2,7 @@
 import { Trash2 } from 'lucide-react'
 import { usePostDeleteModalStore } from '@/store/useModalstore'
 
-const DeleteButton = ({id}: { id:number }) => {
+export const PostDeleteButton = ({id}: { id:number }) => {
   const { openModal } = usePostDeleteModalStore()
   
   const handleOpen = (e) => {
@@ -17,5 +17,3 @@ const DeleteButton = ({id}: { id:number }) => {
     </>
   )
 }
-
-export default DeleteButton

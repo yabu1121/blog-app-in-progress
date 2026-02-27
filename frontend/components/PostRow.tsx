@@ -1,8 +1,8 @@
 import { GetPostResponse } from "@/types/post"
 import { formatDate } from "@/util/formatDate"
 import Link from "next/link"
-import DeleteButton from "./DeleteButton"
-import { UpdateButton } from "./UpdateButton"
+import { PostUpdateButton } from "./PostUpdateButton"
+import { PostDeleteButton } from "./PostDeleteButton"
 
 export const PostRow = ({post}: {post:GetPostResponse}) => {
   return (
@@ -11,8 +11,8 @@ export const PostRow = ({post}: {post:GetPostResponse}) => {
         <div className="flex justify-between">
           <p>id:{post.id}</p>
           <div>
-            <UpdateButton id={post.id}/>
-            <DeleteButton id={post.id}/>
+            <PostUpdateButton id={post.id}/>
+            <PostDeleteButton id={post.id}/>
           </div>
         </div>
         <p className="text-2xl font-bold text-blue-400">{post.title}</p>

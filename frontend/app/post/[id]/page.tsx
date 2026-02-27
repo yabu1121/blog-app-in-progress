@@ -1,6 +1,7 @@
+import { CommentCreateModal } from "@/components/@modal/CommentPostModal";
 import { CommentList } from "@/components/CommentList";
+import { CommentPostButton } from "@/components/CommentPostButton";
 import { Post } from "@/types/post";
-import { Pen } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
@@ -22,7 +23,7 @@ const page = async ({ params }: Props) => {
       <div className="my-4">
         <div className="flex justify-between">
           <h2 className="font-bold text-xl">コメント一覧</h2>
-          <Pen/>
+          <CommentPostButton id={Number(id)}/>
         </div>
         <hr className="mb-4"/>
         <div className="max-w-4xl mx-auto space-y-4">
@@ -33,6 +34,8 @@ const page = async ({ params }: Props) => {
       <div className="mx-auto w-fit">
         <Link className="bg-blue-500 rounded-full text-white w-30 h-10 flex items-center justify-center" href="/post">スレッドに戻る</Link>
       </div>
+
+      <CommentCreateModal />
     </>
   )
 }

@@ -1,3 +1,4 @@
+'use server'
 import { CreatePostRequest } from "@/types/post";
 import { mapToPost } from "@/util/map";
 

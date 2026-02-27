@@ -12,8 +12,8 @@ POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
-  "Name" : "nafame",
-  "Email": "sffaefawdfafewsfafqmapafle@gmail.com"
+  "Name" : "Yabu",
+  "Email": "sffaefawdfe@gmail.com"
 }
 
 ###

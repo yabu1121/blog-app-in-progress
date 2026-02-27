@@ -1,29 +1,23 @@
 'use client'
-import { getPost, updatePost } from "@/actions/postApi";
-import { usePostUpdateModalStore } from "@/store/useModalstore";
-import { CreatePostRequest } from "@/types/post";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createComment } from "@/actions/commentApi";
+import { useCommentCreateModalStore } from "@/store/useModalstore";
+import { CreateCommentRequest } from "@/types/comment";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 
-export const UpdateModal = () => {
+export const CommentCreateModal = () => {
   const queryClient = useQueryClient();
-  const { modalId, closeModal } = usePostUpdateModalStore();
-
-  const { data: post, isPending } = useQuery({
-    queryKey: ['post', modalId],
-    queryFn: () => getPost(modalId as number),
-    enabled: !!modalId
-  })
+  const { modalId, closeModal } = useCommentCreateModalStore();
 
   const { mutate } = useMutation({
     mutationFn: ({ targetId, targetPost }: {
       targetId: number,
-      targetPost: CreatePostRequest
-    }) => updatePost(targetId, targetPost),
+      targetPost: CreateCommentRequest
+    }) => createComment({ postId: targetId, req: targetPost }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
-      toast.success('更新完了')
+      queryClient.invalidateQueries({ queryKey: ['comments'] });
+      toast.success('投稿完了')
       closeModal()
     }
   })
@@ -35,16 +29,14 @@ export const UpdateModal = () => {
     const form = e.currentTarget
     const formData = new FormData(e.currentTarget);
 
-    const req = {
+    const req: CreateCommentRequest = {
       title: String(formData.get('title') ?? ""),
       content: String(formData.get('content') ?? ""),
-      user_id: Number(formData.get('userId'))
+      authorId: Number(formData.get('author_id')),
+      postId: modalId,
     };
 
-    mutate({
-      targetId: modalId,
-      targetPost: req
-    }, {
+    mutate({ targetId: modalId, targetPost: req }, {
       onSuccess: () => form.reset()
     })
   };
@@ -55,8 +47,6 @@ export const UpdateModal = () => {
     closeModal();
   }
 
-  if (isPending) return <p>Loading....</p>
-
   return (
     <div className='fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-200 z-50'>
       <div className='relative bg-white rounded-2xl shadow-2xl p-8 w-80 animate-in fade-in zoom-in-95 duration-300'>
@@ -66,16 +56,16 @@ export const UpdateModal = () => {
           <X onClick={handleClose} className='w-4 h-4' />
         </button>
         <div className='mb-6'>
-          <p className='text-lg font-bold text-gray-900 mb-2'>更新する内容を表示</p>
-          <form onSubmit={handleSubmit} id="edit-form" className="flex flex-col gap-2 mt-4">
-            <input defaultValue={post?.title} name="title" type="text" className="border p-1" placeholder="title" />
-            <input defaultValue={post?.content} name="content" type="text" className="border p-1" placeholder="content" />
-            <input name="userId" type="number" className="border p-1" placeholder="user_id" />
+          <p className='text-lg font-bold text-gray-900 mb-2'>コメントを投稿</p>
+          <form onSubmit={handleSubmit} id="post-form" className="flex flex-col gap-2 mt-4">
+            <input name="title" type="text" className="border p-1" placeholder="title" />
+            <input name="content" type="text" className="border p-1" placeholder="content" />
+            <input name="author_id" type="number" className="border p-1" placeholder="author_id" />
           </form>
         </div>
         <div className='flex gap-3'>
-          <button type="submit" form="edit-form" className='flex-1 h-11 rounded-xl border border-gray-200 bg-white text-gray-700 text-sm font-semibold hover:bg-gray-50 transition-all duration-150 cursor-pointer'>
-            更新する
+          <button type="submit" form="post-form" className='flex-1 h-11 rounded-xl border border-gray-200 bg-white text-gray-700 text-sm font-semibold hover:bg-gray-50 transition-all duration-150 cursor-pointer'>
+            投稿する
           </button>
           <button onClick={handleClose} className='flex-1 h-11 rounded-xl bg-red-500 text-white text-sm font-bold hover:bg-red-600 transition-all duration-150 cursor-pointer shadow-lg shadow-red-200'>
             閉じる

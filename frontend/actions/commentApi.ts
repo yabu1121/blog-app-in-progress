@@ -1,3 +1,4 @@
+'use server'
 import { CreateCommentRequest } from "@/types/comment";
 import { mapToComment } from "@/util/map";
 
@@ -22,7 +23,12 @@ export const createComment = async ({ postId, req }: {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(req)
+    body: JSON.stringify({
+      title: req.title,
+      content: req.content,
+      post_id: req.postId,
+      author_id: req.authorId,
+    })
   })
   if (!res.ok) throw new Error("作成失敗")
   return res.json()

@@ -1,5 +1,5 @@
 'use client'
-import { deletePosts } from "@/lib/postApi";
+import { deletePosts } from "@/actions/postApi";
 import { usePostDeleteModalStore } from "@/store/useModalstore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
@@ -10,9 +10,9 @@ export const DeleteModal = () => {
   const { modalId, closeModal } = usePostDeleteModalStore();
 
   const { mutate } = useMutation({
-    mutationFn: (targetId: number) => deletePosts( targetId ),
+    mutationFn: (targetId: number) => deletePosts(targetId),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['posts']});
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
       closeModal()
       toast.success('削除完了')
     }
@@ -25,7 +25,7 @@ export const DeleteModal = () => {
     e.preventDefault()
     closeModal()
   }
-  
+
   const handleDelete = (e) => {
     e.stopPropagation()
     e.preventDefault()
