@@ -49,6 +49,7 @@ func InitDB() {
 	if err := DB.AutoMigrate(
 		&models.User{},
 		&models.Post{},
+		&models.Comment{},
 	); err != nil {
 		log.Fatal("Migration Failed", err)
 	}

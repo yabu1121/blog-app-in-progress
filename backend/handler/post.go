@@ -74,6 +74,47 @@ func (h *PostHandler) GetPostById (c echo.Context) error {
 	return c.JSON(http.StatusOK, res)
 }
 
+func (h *PostHandler) GetPostByIdWithComment (c echo.Context) error {
+	id := c.Param("id")
+	if id == "" {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error":"id is required"})
+	}
+	var post models.Post
+	if err := h.DB.Preload("User").Preload("Comments.Author").First(&post, id).Error; err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
+	}
+
+	resComments := []models.GetCommentResponse{}
+	for _, item := range post.Comments {
+		temp := models.GetCommentResponse{
+			Title: item.Title,
+			Content: item.Content,
+			AuthorID: item.AuthorID,
+			Author: models.GetUserResponse{
+				ID: item.Author.ID,
+				Name: item.Author.Name,
+			},
+			CreatedAt: item.CreatedAt,
+		}
+		resComments = append(resComments, temp)
+	}
+
+	res := models.GetPostResponse{
+		ID: post.ID,
+		Title: post.Title,
+		Content: post.Content,
+		User: models.GetUserResponse{
+			ID: post.User.ID,
+			Name: post.User.Name,
+		}
+		Comments: resComments,
+		CreatedAt: post.CreatedAt,
+		UpdatedAt: post.UpdatedAt,
+	}
+
+	return c.JSON(http.StatusOK, res)
+}
+
 func (h * PostHandler) DeletePost (c echo.Context) error {
 	id := c.Param("id")
 	if id == "" {

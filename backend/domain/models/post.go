@@ -11,10 +11,11 @@ type Post struct {
 	ID uint `gorm:"primaryKey" json:"id"`
 	Title string  `gorm:"size:255;not null" json:"title"`
 	Content string `gorm:"type:text;not null" json:"content"`
-	UserID    uint      `gorm:"not null" json:"user_id"`
 	
 	// belong to
+	UserID    uint      `gorm:"not null" json:"user_id"`
 	User User `gorm:"foreignKey:UserID" json:"user"`
+	Comments []Comment `json:"comments"`
 	helpers.Timestamps
 }
 
@@ -29,6 +30,7 @@ type GetPostResponse struct {
 	Title string `json:"title"`
 	Content string `json:"content"`
 	User GetUserResponse `json:"user"`
+	Comments []GetCommentResponse `json:"comments"`
 
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
