@@ -12,7 +12,7 @@ type PostHandler struct {
 	DB *gorm.DB
 }
 
-func (h *PostHandler) CreatePost (c echo.Context) error {
+func (h *PostHandler) CreatePost(c echo.Context) error {
 	req := models.CreatePostRequest{}
 	if err := c.Bind(&req);err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error":"invalid request"})
@@ -22,10 +22,25 @@ func (h *PostHandler) CreatePost (c echo.Context) error {
 		Content: req.Content,
 		UserID: req.UserID,
 	}
-	if err := h.DB.Create(&post).Error;err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"error":"internal server error"})
+	if err := h.DB.Create(&post).Error; err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
 	}
-	return c.JSON(http.StatusCreated, post)
+
+	h.DB.Preload("User").First(&post, post.ID)
+
+	res := models.GetPostResponse{
+		ID:      post.ID,
+		Title:   post.Title,
+		Content: post.Content,
+		User: models.GetUserResponse{
+			ID:   post.User.ID,
+			Name: post.User.Name,
+		},
+		CreatedAt: post.CreatedAt,
+		UpdatedAt: post.UpdatedAt,
+	}
+
+	return c.JSON(http.StatusCreated, res)
 }
 
 func (h *PostHandler) GetAllPost (c echo.Context) error {
@@ -56,7 +71,7 @@ func (h *PostHandler) GetPostById (c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error":"id is required"})
 	}
 	var post models.Post
-	if err := h.DB.Preload("User").First(&post, id).Error;err != nil {
+	if err := h.DB.Preload("User").First(&post, id).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
 	}
 
@@ -71,47 +86,6 @@ func (h *PostHandler) GetPostById (c echo.Context) error {
 		CreatedAt: post.CreatedAt,
 		UpdatedAt: post.UpdatedAt,
 	}
-	return c.JSON(http.StatusOK, res)
-}
-
-func (h *PostHandler) GetPostByIdWithComment (c echo.Context) error {
-	id := c.Param("id")
-	if id == "" {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error":"id is required"})
-	}
-	var post models.Post
-	if err := h.DB.Preload("User").Preload("Comments.Author").First(&post, id).Error; err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
-	}
-
-	resComments := []models.GetCommentResponse{}
-	for _, item := range post.Comments {
-		temp := models.GetCommentResponse{
-			Title: item.Title,
-			Content: item.Content,
-			AuthorID: item.AuthorID,
-			Author: models.GetUserResponse{
-				ID: item.Author.ID,
-				Name: item.Author.Name,
-			},
-			CreatedAt: item.CreatedAt,
-		}
-		resComments = append(resComments, temp)
-	}
-
-	res := models.GetPostResponse{
-		ID: post.ID,
-		Title: post.Title,
-		Content: post.Content,
-		User: models.GetUserResponse{
-			ID: post.User.ID,
-			Name: post.User.Name,
-		}
-		Comments: resComments,
-		CreatedAt: post.CreatedAt,
-		UpdatedAt: post.UpdatedAt,
-	}
-
 	return c.JSON(http.StatusOK, res)
 }
 
@@ -135,8 +109,33 @@ func (h *PostHandler) UpdatePost (c echo.Context) error {
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "invalid request"})
 	}
-	if err := h.DB.Model(&models.Post{}).Where("id = ?", id).Updates(req).Error; err != nil {
+
+	var post models.Post
+	if err := h.DB.First(&post, id).Error; err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"error": "post not found"})
+	}
+
+	if err := h.DB.Model(&post).Updates(models.Post{
+		Title:   req.Title,
+		Content: req.Content,
+		UserID:  req.UserID,
+	}).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
 	}
-	return c.JSON(http.StatusOK, req)
+
+	h.DB.Preload("User").First(&post, post.ID)
+
+	res := models.GetPostResponse{
+		ID:      post.ID,
+		Title:   post.Title,
+		Content: post.Content,
+		User: models.GetUserResponse{
+			ID:   post.User.ID,
+			Name: post.User.Name,
+		},
+		CreatedAt: post.CreatedAt,
+		UpdatedAt: post.UpdatedAt,
+	}
+
+	return c.JSON(http.StatusOK, res)
 }

@@ -1,3 +1,4 @@
+import { GetCommentResponse } from "@/types/comment";
 import { GetPostResponse } from "@/types/post";
 
 export const mapToPost = (raw: any): GetPostResponse => {
@@ -11,5 +12,18 @@ export const mapToPost = (raw: any): GetPostResponse => {
     },
     createdAt: raw.created_at,
     updatedAt: raw.updated_at
+  }
+}
+
+export const mapToComment = (raw: any): GetCommentResponse => {
+  return {
+    title: raw.title,
+    content: raw.content,
+    authorId: raw.author_id,
+    author: {
+      id: raw.author.id,
+      name: raw.author.name,
+    },
+    createdAt: raw.created_at
   }
 }

@@ -12,8 +12,8 @@ POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
-  "Name" : "name",
-  "Email": "sfawdfafewsfafqmapafle@gmail.com"
+  "Name" : "nafame",
+  "Email": "sffaefawdfafewsfafqmapafle@gmail.com"
 }
 
 ###
@@ -29,8 +29,8 @@ POST {{baseUrl}}/post
 Content-Type: application/json
 
 {
-  "title": "title",
-  "content": "content",
+  "title": "titlefa",
+  "content": "confatent",
   "user_id": 1,
 }
 
@@ -45,4 +45,17 @@ Content-Type: application/json
   "title": "fa",
   "content":"contentfaesijf",
   "user_id": 1
+}
+
+###
+GET {{baseUrl}}/post/111/comments
+
+###
+POST {{baseUrl}}/post/111/comment
+Content-Type: application/json
+
+{
+  "title": "fafa",
+  "content":"comuibubment",
+  "author_id": 43
 }

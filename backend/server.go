@@ -21,7 +21,7 @@ func main() {
 
 	userHandler := &handler.UserHandler{DB: database.DB}
 	postHandler := &handler.PostHandler{DB: database.DB}
-	commentHandler := &handler.PostHandler{DB: database.DB}
+	commentHandler := &handler.CommentHandler{DB: database.DB}
 
 	e.GET("/", handler.Hello)
 	e.GET("/user", userHandler.GetAllUser)
@@ -29,10 +29,11 @@ func main() {
 	e.POST("/user", userHandler.CreateUser)
 	e.GET("/post", postHandler.GetAllPost)
 	e.GET("/post/:id", postHandler.GetPostById)
-	e.GET("/post/:id/comments", postHandler.GetPostByIdWithComment)
 	e.PUT("/post/:id", postHandler.UpdatePost)
 	e.DELETE("/post/:id", postHandler.DeletePost)
 	e.POST("/post", postHandler.CreatePost)
+	e.GET("/post/:id/comments", commentHandler.GetComments)
+	e.POST("/post/:id/comment", commentHandler.CreateComment)
 
 	if err := e.Start(":8080"); err != nil {
 		e.Logger.Error("failed to start server", "error", err)
