@@ -1,14 +1,20 @@
 'use client'
-import { updatePost } from "@/lib/postApi";
+import { getPost, updatePost } from "@/lib/postApi";
 import { useUpdateModalStore } from "@/store/useModalstore";
-import { CreatePostRequest } from "@/types/post";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { CreatePostRequest, GetPostResponse } from "@/types/post";
+import { dataTagErrorSymbol, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 
 export const UpdateModal = () => {
   const queryClient = useQueryClient();
   const { modalId, closeModal } = useUpdateModalStore();
+
+  const { data: post , isPending} = useQuery({
+    queryKey: ['post', modalId],
+    queryFn: () => getPost(modalId as number),
+    enabled: !!modalId
+  })
 
   const { mutate } = useMutation({
     mutationFn: ({ targetId, targetPost} : { 
@@ -38,7 +44,7 @@ export const UpdateModal = () => {
     mutate({
       targetId:modalId, 
       targetPost: req
-    }, {
+    },{
       onSuccess: () => form.reset()
     })
   };
@@ -48,6 +54,8 @@ export const UpdateModal = () => {
     e.stopPropagation();
     closeModal();
   }
+
+  if(isPending)return <p>Loading....</p>
 
   return (
     <div className='fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-200 z-50'>
@@ -60,9 +68,9 @@ export const UpdateModal = () => {
         <div className='mb-6'>
           <p className='text-lg font-bold text-gray-900 mb-2'>更新する内容を表示</p>
           <form onSubmit={handleSubmit} id="edit-form" className="flex flex-col gap-2 mt-4">
-            <input name="title" type="text" className="border p-1" placeholder="title"/>
-            <input name="content" type="text" className="border p-1" placeholder="content"/>
-            <input name="userId" type="number" className="border p-1" placeholder="user_id"/>
+            <input defaultValue={post?.title} name="title" type="text" className="border p-1" placeholder="title"/>
+            <input defaultValue={post?.content} name="content" type="text" className="border p-1" placeholder="content"/>
+            <input defaultValue={post?.userId} name="userId" type="number" className="border p-1" placeholder="user_id"/>
           </form>
         </div>
         <div className='flex gap-3'>
