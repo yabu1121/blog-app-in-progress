@@ -1,5 +1,5 @@
 'use client'
-import { getPosts } from '@/lib/api'
+import { getPosts } from '@/lib/postApi'
 import { Post } from '@/types/post'
 import { useQuery } from '@tanstack/react-query'
 import { PostRow } from './PostRow'

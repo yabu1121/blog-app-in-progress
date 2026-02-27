@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TanstackProvider } from "./providers";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <div className="p-20 mx-auto">
           <TanstackProvider>
+            <Toaster position="top-center" richColors/>
             {children}
           </TanstackProvider>
         </div>

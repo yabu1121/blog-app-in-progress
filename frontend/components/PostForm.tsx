@@ -1,9 +1,10 @@
 'use client'
-import { createPost } from "@/lib/api";
+import { createPost } from "@/lib/postApi";
 import { CreatePostRequest } from "@/types/post";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import { HasLoadingBoundary } from "next/dist/shared/lib/app-router-types";
+import { toast } from "sonner";
 
  
 
@@ -14,7 +15,7 @@ export default function PostForm() {
     mutationFn: ( targetPost: CreatePostRequest ) => createPost( targetPost ), 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
-      alert("ポストを作成しました。");
+      toast.success('投稿完了')
     }
   })
 
