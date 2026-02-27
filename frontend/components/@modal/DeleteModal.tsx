@@ -1,13 +1,13 @@
 'use client'
 import { deletePosts } from "@/lib/postApi";
-import { useDeleteModalStore } from "@/store/useModalstore";
+import { usePostDeleteModalStore } from "@/store/useModalstore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 
 export const DeleteModal = () => {
   const queryClient = useQueryClient();
-  const { modalId, closeModal } = useDeleteModalStore();
+  const { modalId, closeModal } = usePostDeleteModalStore();
 
   const { mutate } = useMutation({
     mutationFn: (targetId: number) => deletePosts( targetId ),

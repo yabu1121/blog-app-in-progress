@@ -1,14 +1,14 @@
 'use client'
 import { getPost, updatePost } from "@/lib/postApi";
-import { useUpdateModalStore } from "@/store/useModalstore";
-import { CreatePostRequest, GetPostResponse } from "@/types/post";
-import { dataTagErrorSymbol, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { usePostUpdateModalStore } from "@/store/useModalstore";
+import { CreatePostRequest } from "@/types/post";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 
 export const UpdateModal = () => {
   const queryClient = useQueryClient();
-  const { modalId, closeModal } = useUpdateModalStore();
+  const { modalId, closeModal } = usePostUpdateModalStore();
 
   const { data: post , isPending} = useQuery({
     queryKey: ['post', modalId],

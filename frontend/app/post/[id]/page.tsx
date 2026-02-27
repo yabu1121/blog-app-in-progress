@@ -1,5 +1,6 @@
 import { CommentList } from "@/components/CommentList";
 import { Post } from "@/types/post";
+import { Pen } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
@@ -12,17 +13,21 @@ const page = async ({ params }: Props) => {
   const post: Post = await res.json()
   return (
     <>
-      <h1 className="font-bold text-2xl">{post.title}</h1>
-      <hr />
-      <p className="text-sm my-4">{post.content}</p>
+      <div>
+        <h1 className="font-bold text-2xl">{post.title}</h1>
+        <hr />
+        <p className="text-sm my-4">{post.content}</p>
+      </div>
 
       <div className="my-4">
-        <h2 className="font-bold text-xl">コメント一覧</h2>
+        <div className="flex justify-between">
+          <h2 className="font-bold text-xl">コメント一覧</h2>
+          <Pen/>
+        </div>
         <hr className="mb-4"/>
-          <div className="max-w-4xl mx-auto space-y-4">
-            <CommentList postId={Number(id)}/>
-          </div>
-
+        <div className="max-w-4xl mx-auto space-y-4">
+          <CommentList postId={Number(id)}/>
+        </div>
       </div>
 
       <div className="mx-auto w-fit">

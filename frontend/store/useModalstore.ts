@@ -6,13 +6,19 @@ type ModalState = {
   closeModal: () => void;
 }
 
-export const useDeleteModalStore = create<ModalState>((set) => ({
+export const usePostDeleteModalStore = create<ModalState>((set) => ({
   modalId: null,
   openModal: (id) => set({modalId: id}),
   closeModal: () => set({modalId: null}),
 }))
 
-export const useUpdateModalStore = create<ModalState>((set) => ({
+export const usePostUpdateModalStore = create<ModalState>((set) => ({
+  modalId: null,
+  openModal: (id) => set({modalId: id}),
+  closeModal: () => set({modalId: null}),
+}))
+
+export const useCommentCreateModalStore = create<ModalState>((set) => ({
   modalId: null,
   openModal: (id) => set({modalId: id}),
   closeModal: () => set({modalId: null}),

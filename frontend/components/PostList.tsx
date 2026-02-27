@@ -13,7 +13,6 @@ const PostList = () => {
   if(isPending)return<p>loading...</p>
   if(isError)return<p>Sorry...Error..</p>
 
-
   return (
     <div className="space-y-2">
       {posts.map((post: Post) => <PostRow key={post.id} post={post}/>)}

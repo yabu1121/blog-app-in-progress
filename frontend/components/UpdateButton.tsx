@@ -1,9 +1,9 @@
 'use client'
-import { useUpdateModalStore } from "@/store/useModalstore";
+import { usePostUpdateModalStore } from "@/store/useModalstore";
 import { Pen } from "lucide-react";
 
 export const UpdateButton = ({id}: {id:number}) => {
-  const { openModal } = useUpdateModalStore()
+  const { openModal } = usePostUpdateModalStore()
   const handleClick = (e) => {
     e.stopPropagation()
     e.preventDefault()

@@ -1,9 +1,9 @@
 'use client'
 import { Trash2 } from 'lucide-react'
-import { useDeleteModalStore } from '@/store/useModalstore'
+import { usePostDeleteModalStore } from '@/store/useModalstore'
 
 const DeleteButton = ({id}: { id:number }) => {
-  const { openModal } = useDeleteModalStore()
+  const { openModal } = usePostDeleteModalStore()
   
   const handleOpen = (e) => {
     e.stopPropagation()
