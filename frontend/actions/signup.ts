@@ -1,8 +1,10 @@
 'use server'
 
 import { SignUpRequest, SignUpResponse } from "@/types/user"
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
-export const createSignUp = async (formData: FormData) => {
+export const SignUp = async (formData: FormData) => {
   const name = String(formData.get('name'))
   const email = String(formData.get('email'))
   const password = String(formData.get('password'))
@@ -17,6 +19,7 @@ export const createSignUp = async (formData: FormData) => {
     password: password,
   }
 
+  // req 送信
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/signup`, {
     method: 'POST',
     headers: {
@@ -28,5 +31,16 @@ export const createSignUp = async (formData: FormData) => {
   if (!res.ok) throw new Error("登録に失敗")
 
   const data: SignUpResponse = await res.json()
-  console.log(data.token)
+  const token = data.token
+
+  // cookieに保存
+  const cookieStore = await cookies()
+  cookieStore.set('auth_token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 4,
+  })
+  redirect("dashboard")
 }

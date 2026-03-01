@@ -31,3 +31,12 @@ export type SignUpRequest = {
 export type SignUpResponse = {
   token: string;
 }
+
+export type LoginRequest = {
+  email: string;
+  password: string;
+}
+
+export type LoginResponse = {
+  token: string;
+}

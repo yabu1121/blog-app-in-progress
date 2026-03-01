@@ -1,0 +1,64 @@
+.
+├── README.md
+├── actions
+│   ├── commentApi.ts
+│   ├── createSignup.ts
+│   └── postApi.ts
+├── app
+│   ├── dashboard
+│   │   └── page.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── loading.tsx
+│   ├── login
+│   ├── page.tsx
+│   ├── post
+│   │   ├── [id]
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   └── post
+│   │       └── page.tsx
+│   ├── providers.tsx
+│   └── signup
+│       └── page.tsx
+├── components
+│   ├── CommentList.tsx
+│   ├── CommentPostButton.tsx
+│   ├── PostDeleteButton.tsx
+│   ├── PostForm.tsx
+│   ├── PostList.tsx
+│   ├── PostRow.tsx
+│   ├── PostUpdateButton.tsx
+│   ├── SignUpForm.tsx
+│   └── modal
+│       ├── CommentPostModal.tsx
+│       ├── DeleteModal.tsx
+│       └── UpdateModal.tsx
+├── eslint.config.mjs
+├── memo.txt
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── script.js
+├── store
+│   ├── useModalstore.ts
+│   └── usePostEditStore.ts
+├── tsconfig.json
+├── types
+│   ├── comment.ts
+│   ├── post.ts
+│   └── user.ts
+└── util
+    ├── formatDate.ts
+    └── map.ts
+
+14 directories, 47 files
