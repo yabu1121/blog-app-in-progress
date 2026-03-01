@@ -101,3 +101,112 @@
 └── memo.txt
 
 24 directories, 76 files
+.
+├── 100-3report.txt
+├── README.md
+├── api
+│   └── test.http
+├── backend
+│   ├── Dockerfile
+│   ├── blog-backend
+│   ├── config
+│   │   └── config.go
+│   ├── database
+│   │   ├── db.go
+│   │   └── seed.go
+│   ├── docker-compose.yml
+│   ├── domain
+│   │   └── models
+│   │       ├── comment.go
+│   │       ├── helpers
+│   │       │   └── timestamps.go
+│   │       ├── post.go
+│   │       └── user.go
+│   ├── go.mod
+│   ├── go.sum
+│   ├── handler
+│   │   ├── comment.go
+│   │   ├── hello.go
+│   │   ├── post.go
+│   │   └── user.go
+│   ├── middleware
+│   │   └── auth.go
+│   ├── scraper
+│   │   └── main.go
+│   ├── server.go
+│   └── tmp
+├── frontend
+│   ├── README.md
+│   ├── actions
+│   │   ├── commentApi.ts
+│   │   ├── getMyInfomation.ts
+│   │   ├── login.ts
+│   │   ├── logout.ts
+│   │   ├── postApi.ts
+│   │   └── signup.ts
+│   ├── app
+│   │   ├── dashboard
+│   │   │   └── page.tsx
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── loading.tsx
+│   │   ├── login
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── post
+│   │   │   ├── [id]
+│   │   │   │   └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── post
+│   │   │       └── page.tsx
+│   │   ├── providers.tsx
+│   │   └── signup
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── CommentList.tsx
+│   │   ├── CommentPostButton.tsx
+│   │   ├── LoginForm copy.tsx
+│   │   ├── LogoutButton.tsx
+│   │   ├── PostDeleteButton.tsx
+│   │   ├── PostForm.tsx
+│   │   ├── PostList.tsx
+│   │   ├── PostRow.tsx
+│   │   ├── PostUpdateButton.tsx
+│   │   ├── SignUpForm.tsx
+│   │   ├── UserInfo.tsx
+│   │   └── modal
+│   │       ├── CommentPostModal.tsx
+│   │       ├── DeleteModal.tsx
+│   │       └── UpdateModal.tsx
+│   ├── eslint.config.mjs
+│   ├── memo.txt
+│   ├── middleware.ts
+│   ├── next-env.d.ts
+│   ├── next.config.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.mjs
+│   ├── public
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   ├── script.js
+│   ├── store
+│   │   ├── useModalstore.ts
+│   │   └── usePostEditStore.ts
+│   ├── tsconfig.json
+│   ├── types
+│   │   ├── comment.ts
+│   │   ├── post.ts
+│   │   └── user.ts
+│   └── util
+│       ├── formatDate.ts
+│       └── map.ts
+├── k6report.txt
+├── max-rps.txt
+└── memo.txt
+
+26 directories, 80 files
