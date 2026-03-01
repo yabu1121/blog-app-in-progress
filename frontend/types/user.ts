@@ -20,3 +20,14 @@ export type CreateUserRequest = {
   name: string;
   email: string;
 }
+
+
+export type SignUpRequest = {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export type SignUpResponse = {
+  token: string;
+}

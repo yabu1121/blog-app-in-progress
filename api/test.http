@@ -59,3 +59,13 @@ Content-Type: application/json
   "content":"comuibubment",
   "author_id": 43
 }
+
+### 
+POST {{baseUrl}}/signup
+Content-Type: application/json
+
+{
+  "name": "name",
+  "email": "emaifdasl",
+  "password": "password"
+}
