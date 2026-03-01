@@ -42,6 +42,7 @@ func main() {
 	authGroup.PUT("/post/:id", postHandler.UpdatePost)
 	authGroup.DELETE("/post/:id", postHandler.DeletePost)
 	authGroup.POST("/post/:id/comment", commentHandler.CreateComment)
+	authGroup.GET("/me", userHandler.GetMe)
 
 	if err := e.Start(":8080"); err != nil {
 		e.Logger.Error("failed to start server", "error", err)
