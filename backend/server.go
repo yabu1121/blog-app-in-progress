@@ -10,7 +10,7 @@ import (
 func main() {
 
 	e := echo.New()
-	e.Use(middleware.RequestLogger()) 
+	e.Use(middleware.RequestLogger())
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"http://localhost:3000"},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
@@ -24,6 +24,8 @@ func main() {
 	commentHandler := &handler.CommentHandler{DB: database.DB}
 
 	e.GET("/", handler.Hello)
+	e.POST("/signup", userHandler.SignUp)
+	e.POST("/login", userHandler.Login)
 	e.GET("/user", userHandler.GetAllUser)
 	e.GET("/user/:id", userHandler.GetUserById)
 	e.POST("/user", userHandler.CreateUser)

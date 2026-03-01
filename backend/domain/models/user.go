@@ -21,3 +21,18 @@ type CreateUserRequest struct {
 	Name string `json:"name" validate:"required,min=2"`
 	Email string `json:"email" validate:"required,email"`
 }
+
+type SignUpUserRequest struct {
+	Name string `json:"name"`
+	Email string `json:"email"`
+	Password string `json:"password"`
+}
+
+type JwtResponse struct {
+	Token string `json:"token"`
+}
+
+type LoginUserRequest struct {
+	Email string `json:"email"`
+	Password string `json:"password"`
+}
