@@ -13,14 +13,20 @@ type PostHandler struct {
 }
 
 func (h *PostHandler) CreatePost(c echo.Context) error {
+	// JWTミドルウェアがセットしたuser_idを取得
+	userID, ok := c.Get("user_id").(uint)
+	if !ok {
+		return c.JSON(http.StatusUnauthorized, map[string]string{"error": "unauthorized"})
+	}
+
 	req := models.CreatePostRequest{}
-	if err := c.Bind(&req);err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error":"invalid request"})
+	if err := c.Bind(&req); err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "invalid request"})
 	}
 	post := models.Post{
-		Title: req.Title,
+		Title:   req.Title,
 		Content: req.Content,
-		UserID: req.UserID,
+		UserID:  userID,
 	}
 	if err := h.DB.Create(&post).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
@@ -105,6 +111,12 @@ func (h *PostHandler) UpdatePost (c echo.Context) error {
 	if id == "" {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "id is required"})
 	}
+	// JWTミドルウェアがセットしたuser_idを取得
+	userID, ok := c.Get("user_id").(uint)
+	if !ok {
+		return c.JSON(http.StatusUnauthorized, map[string]string{"error": "unauthorized"})
+	}
+
 	var req models.CreatePostRequest
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "invalid request"})
@@ -118,7 +130,7 @@ func (h *PostHandler) UpdatePost (c echo.Context) error {
 	if err := h.DB.Model(&post).Updates(models.Post{
 		Title:   req.Title,
 		Content: req.Content,
-		UserID:  req.UserID,
+		UserID:  userID,
 	}).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "internal server error"})
 	}

@@ -32,8 +32,10 @@
 │   ├── README.md
 │   ├── actions
 │   │   ├── commentApi.ts
-│   │   ├── createSignup.ts
-│   │   └── postApi.ts
+│   │   ├── login.ts
+│   │   ├── logout.ts
+│   │   ├── postApi.ts
+│   │   └── signup.ts
 │   ├── app
 │   │   ├── dashboard
 │   │   │   └── page.tsx
@@ -42,6 +44,7 @@
 │   │   ├── layout.tsx
 │   │   ├── loading.tsx
 │   │   ├── login
+│   │   │   └── page.tsx
 │   │   ├── page.tsx
 │   │   ├── post
 │   │   │   ├── [id]
@@ -55,6 +58,8 @@
 │   ├── components
 │   │   ├── CommentList.tsx
 │   │   ├── CommentPostButton.tsx
+│   │   ├── LoginForm copy.tsx
+│   │   ├── LogoutButton.tsx
 │   │   ├── PostDeleteButton.tsx
 │   │   ├── PostForm.tsx
 │   │   ├── PostList.tsx
@@ -67,6 +72,7 @@
 │   │       └── UpdateModal.tsx
 │   ├── eslint.config.mjs
 │   ├── memo.txt
+│   ├── middleware.ts
 │   ├── next-env.d.ts
 │   ├── next.config.ts
 │   ├── package-lock.json
@@ -94,4 +100,4 @@
 ├── max-rps.txt
 └── memo.txt
 
-24 directories, 70 files
+24 directories, 76 files

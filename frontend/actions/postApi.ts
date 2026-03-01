@@ -1,9 +1,10 @@
 'use server'
 import { CreatePostRequest } from "@/types/post";
 import { mapToPost } from "@/util/map";
+import { cookies } from "next/headers";
 
-export const getPost = async ( id: number ) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/post/${id}`,{
+export const getPost = async (id: number) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/post/${id}`, {
     method: 'GET',
     headers: {
       "Content-Type": "applicaiton/json",
@@ -30,29 +31,37 @@ export const deletePosts = async ( id:number ) => {
     method: 'DELETE',
   })
   if(!res.ok) throw new Error("削除失敗");
-  return null 
+  return null
 }
 
-export const createPost = async ( newPost : CreatePostRequest) => {
+export const createPost = async (newPost: CreatePostRequest) => {
+  const cookieStore = await cookies()
+  const token = cookieStore.get('auth_token')?.value
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/post`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Cookie: `auth_token=${token}` } : {}),
     },
     body: JSON.stringify(newPost)
   });
-  if (!res.ok)throw new Error("投稿失敗");
+  if (!res.ok) throw new Error("投稿失敗");
   return res.json()
 }
 
-export const updatePost = async (id:number, updatedPost: CreatePostRequest) => {
+export const updatePost = async (id: number, updatedPost: CreatePostRequest) => {
+  const cookieStore = await cookies()
+  const token = cookieStore.get('auth_token')?.value
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/post/${id}`, {
     method: 'PUT',
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Cookie: `auth_token=${token}` } : {}),
     },
     body: JSON.stringify(updatedPost)
   });
-  if(!res.ok)throw new Error("更新失敗");
+  if (!res.ok) throw new Error("更新失敗");
   return res.json()
 }

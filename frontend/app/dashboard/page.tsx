@@ -16,6 +16,7 @@ const page = () => {
   ]
   return (
     <div>
+      <p>ダッシュボード</p>
       {
         listMap.map((item,idx) => {
           return (

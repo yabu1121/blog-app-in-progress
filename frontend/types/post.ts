@@ -1,7 +1,7 @@
 import { GetUserResponse, User } from "./user";
 
 export type Post = {
-  id:number;
+  id: number;
   title: string;
   content: string;
   userId: number;
@@ -14,7 +14,6 @@ export type Post = {
 export type CreatePostRequest = {
   title: string;
   content: string;
-  user_id: number;
 }
 
 export type GetPostResponse = {

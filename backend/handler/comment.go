@@ -27,11 +27,12 @@ func (h *CommentHandler) GetComments(c echo.Context) error {
 	res := make([]models.GetCommentResponse, len(comments))
 	for i, item := range comments {
 		res[i] = models.GetCommentResponse{
-			Title:   item.Title,
-			Content: item.Content,
-			Author:  models.GetUserResponse{
-				ID:    item.Author.ID,
-				Name:  item.Author.Name,
+			Title:    item.Title,
+			Content:  item.Content,
+			AuthorID: item.AuthorID,
+			Author: models.GetUserResponse{
+				ID:   item.Author.ID,
+				Name: item.Author.Name,
 			},
 			CreatedAt: item.CreatedAt.String(),
 		}
@@ -44,6 +45,12 @@ func (h *CommentHandler) CreateComment(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, "id is required")
 	}
+	// JWTミドルウェアがセットしたuser_idをauthor_idとして使用
+	userID, ok := c.Get("user_id").(uint)
+	if !ok {
+		return c.JSON(http.StatusUnauthorized, map[string]string{"error": "unauthorized"})
+	}
+
 	var req models.CreateCommentRequest
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "invalid request"})
@@ -52,7 +59,7 @@ func (h *CommentHandler) CreateComment(c echo.Context) error {
 		Title:    req.Title,
 		Content:  req.Content,
 		PostID:   uint(postID),
-		AuthorID: req.AuthorID,
+		AuthorID: userID,
 	}
 
 	if err := h.DB.Create(&comment).Error; err != nil {
@@ -63,11 +70,12 @@ func (h *CommentHandler) CreateComment(c echo.Context) error {
 	}
 
 	res := models.GetCommentResponse{
-		Title:   comment.Title,
-		Content: comment.Content,
-		Author:  models.GetUserResponse{
-			ID:    comment.Author.ID,
-			Name:  comment.Author.Name,
+		Title:    comment.Title,
+		Content:  comment.Content,
+		AuthorID: comment.AuthorID,
+		Author: models.GetUserResponse{
+			ID:   comment.Author.ID,
+			Name: comment.Author.Name,
 		},
 		CreatedAt: comment.CreatedAt.String(),
 	}

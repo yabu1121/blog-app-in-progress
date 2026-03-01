@@ -32,7 +32,6 @@ export const CommentCreateModal = () => {
     const req: CreateCommentRequest = {
       title: String(formData.get('title') ?? ""),
       content: String(formData.get('content') ?? ""),
-      authorId: Number(formData.get('author_id')),
       postId: modalId,
     };
 
@@ -41,7 +40,7 @@ export const CommentCreateModal = () => {
     })
   };
 
-  const handleClose = (e) => {
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     closeModal();
@@ -51,16 +50,16 @@ export const CommentCreateModal = () => {
     <div className='fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-200 z-50'>
       <div className='relative bg-white rounded-2xl shadow-2xl p-8 w-80 animate-in fade-in zoom-in-95 duration-300'>
         <button
+          onClick={handleClose}
           className='absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-gray-400 hover:bg-red-50 hover:text-red-400 hover:border-red-200 transition-all duration-150 cursor-pointer'
         >
-          <X onClick={handleClose} className='w-4 h-4' />
+          <X className='w-4 h-4' />
         </button>
         <div className='mb-6'>
           <p className='text-lg font-bold text-gray-900 mb-2'>コメントを投稿</p>
           <form onSubmit={handleSubmit} id="post-form" className="flex flex-col gap-2 mt-4">
             <input name="title" type="text" className="border p-1" placeholder="title" />
             <input name="content" type="text" className="border p-1" placeholder="content" />
-            <input name="author_id" type="number" className="border p-1" placeholder="author_id" />
           </form>
         </div>
         <div className='flex gap-3'>
