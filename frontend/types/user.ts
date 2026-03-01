@@ -21,7 +21,6 @@ export type CreateUserRequest = {
   email: string;
 }
 
-
 export type SignUpRequest = {
   name: string;
   email: string;

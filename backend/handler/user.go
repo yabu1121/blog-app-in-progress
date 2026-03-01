@@ -130,8 +130,8 @@ func (h *UserHandler) Login (c echo.Context) error {
 func (h *UserHandler) GetMe (c echo.Context) error {
 	val := c.Get("user_id")
 	userID, ok := val.(uint)
-	if !ok || uerID == 0 {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error": "unauthorized"})
+	if !ok || userID == 0 {
+		return c.JSON(http.StatusUnauthorized, map[string]string{"error": "unauthorized"})
 	}
 	var user models.User
 	if err := h.DB.First(&user, userID).Error; err != nil {
