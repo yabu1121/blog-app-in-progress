@@ -1,11 +1,11 @@
 'use client'
 import { getPosts } from '@/actions/postApi'
-import { Post } from '@/types/post'
+import { GetPostResponse } from '@/types/post'
 import { useQuery } from '@tanstack/react-query'
 import { PostRow } from './PostRow'
 
 const PostList = () => {
-  const { data: posts, isPending, isError } = useQuery({
+  const { data: posts, isPending, isError } = useQuery<GetPostResponse[]>({
     queryKey: ['posts'],
     queryFn: getPosts,
   })
@@ -15,7 +15,7 @@ const PostList = () => {
 
   return (
     <div className="space-y-2">
-      {posts.map((post: Post) => <PostRow key={post.id} post={post} />)}
+      {posts.map((post) => <PostRow key={post.id} post={post} />)}
     </div>
   )
 }

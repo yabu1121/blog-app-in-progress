@@ -20,13 +20,13 @@ export const DeleteModal = () => {
 
   if (modalId === null) return null
 
-  const handleClose = (e) => {
+  const handleClose = (e: React.MouseEvent) => {
     e.stopPropagation()
     e.preventDefault()
     closeModal()
   }
 
-  const handleDelete = (e) => {
+  const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation()
     e.preventDefault()
     mutate(modalId)

@@ -2,10 +2,10 @@
 import { Trash2 } from 'lucide-react'
 import { usePostDeleteModalStore } from '@/store/useModalstore'
 
-export const PostDeleteButton = ({id}: { id:number }) => {
+export const PostDeleteButton = ({ id }: { id: number }) => {
   const { openModal } = usePostDeleteModalStore()
-  
-  const handleOpen = (e) => {
+
+  const handleOpen = (e: React.MouseEvent) => {
     e.stopPropagation()
     e.preventDefault()
     openModal(id)
@@ -13,7 +13,7 @@ export const PostDeleteButton = ({id}: { id:number }) => {
 
   return (
     <>
-      <Trash2 onClick={handleOpen} className="text-blue-300 hover:text-blue-400 cursor-pointer"/>
+      <Trash2 onClick={handleOpen} className="text-blue-300 hover:text-blue-400 cursor-pointer" />
     </>
   )
 }
